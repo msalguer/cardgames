@@ -4,6 +4,8 @@
 
 Author: Manuel Salguero
 
+MIT License
+
 ### IMPORTANT
 This proyect in an test exercise on Golang with TDD tests.
 
