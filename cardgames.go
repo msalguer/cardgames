@@ -72,6 +72,7 @@ func loadreadme() string {
 	fptr := flag.String("fpath", "README", "file path to read from")
 	flag.Parse()
 
+
 	f, err := os.Open(*fptr)
 	if err != nil {
 		log.Fatal(err)
