@@ -1,1 +1,2 @@
-web: cardgames
+worker: go run cardgames.go
+
