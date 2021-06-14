@@ -3,6 +3,7 @@
 ----------------------------
 
 Author: Manuel Salguero
+
 MIT License
 
 ### IMPORTANT
