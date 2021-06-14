@@ -1,3 +1,4 @@
+// For local execution: module cardgames
 module github.com/msalguer/cardgames
 
 go 1.16
