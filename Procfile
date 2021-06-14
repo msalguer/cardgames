@@ -1,1 +1,1 @@
-web: currency
+web: go run cardgames.go
