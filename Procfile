@@ -1,2 +1,2 @@
-web: cardgames
+web: currency
 
