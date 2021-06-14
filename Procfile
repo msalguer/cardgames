@@ -1,2 +1,2 @@
-web: go run cardgames.go
+web: cardgames
 
