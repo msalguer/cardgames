@@ -386,10 +386,10 @@ func SetupServer() {
 	E.GET("/api/deck/:deck_id", OpenDeck)
 	E.GET("/api/deck/:deck_id/draw", DrawDeck) //With count parameter
 
-https://www.loginradius.com/blog/async/environment-variables-in-golang/
 	//Listen web server
 	port := os.Getenv("DB_HOST")
-	if port {
+	fmt.Printf("%s\n", port)
+	if port!="" {
 	    E.Logger.Fatal(E.Start(port)) //For Heroku deploy
 	} else {
 	    E.Logger.Fatal(E.Start(":8000"))
