@@ -387,7 +387,8 @@ func SetupServer() {
 	E.GET("/api/deck/:deck_id/draw", DrawDeck) //With count parameter
 
 	//Listen web server
-	E.Logger.Fatal(E.Start(":8000"))
+	//E.Logger.Fatal(E.Start(":8000"))
+	E.Logger.Fatal(E.Start()) //For Heroku deploy
 	//Serv = e
 
 }
