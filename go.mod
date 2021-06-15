@@ -1,3 +1,4 @@
+// +heroku install ./cmd/...
 // For local execution: module cardgames
 module github.com/msalguer/cardgames
 
