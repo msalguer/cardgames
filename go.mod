@@ -1,6 +1,7 @@
 // +heroku install ./...
-// For local execution: module cardgames
-module github.com/msalguer/cardgames
+module cardgames
+
+// For Heroku module github.com/msalguer/cardgames
 
 go 1.16
 
