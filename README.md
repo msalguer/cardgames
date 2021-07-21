@@ -31,19 +31,19 @@ mkdir cardgames
 cd cardgames
 
 ### Run app in script mode:
-go run cardgames.go
+go run .
 
 ### Test app:
-go test .
+go test ./...
 
 ### Verbose test app:
-go test . -v
+go test ./... -v
 
 Build app:
-go build
+go build .
 
 Run (Execute binary):
-./cardgames
+./main
 
 ### ===========
 ### API RESTFUL
