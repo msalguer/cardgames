@@ -18,11 +18,6 @@ func TestOpenDeck(t *testing.T) {
 	assert := assert.New(t)
 
 	for i := 0; i < len(Dis.did); i++ {
-		/*
-			if resp, err := http.Get(
-				//"http://127.0.0.1:8000/api/deck/" + dis.did[i].deck_id); err == nil {
-				"/api/deck/" + dis.did[i].deck_id); err == nil {
-		*/
 
 		req, err := http.NewRequest("GET", "/api/deck/"+Dis.did[i].deck_id, nil)
 		if err != nil {
@@ -40,10 +35,7 @@ func TestOpenDeck(t *testing.T) {
 				status, http.StatusOK)
 		}
 
-		//assert.Equal(http.StatusOK, resp.StatusCode)
 		assert.Equal(http.StatusOK, res.Code) //Duplicate
-		//bodyBytes, _ := ioutil.ReadAll(resp.Body)
-		//bodyString := string(bodyBytes)
 		bodyBytes := res.Body.Bytes()
 		bodyString := res.Body.String()
 		log.Info(bodyString)
@@ -65,25 +57,7 @@ func TestOpenDeck(t *testing.T) {
 		filename := fmt.Sprintf("%s%s", Ds.newdeck[i].game, ".json")
 		byteValue := c.ReadDataFile(res, filename)
 		json.Unmarshal(byteValue, &odeck)
-		/*
-			//filename := fmt.Sprintf("%s%s", Ds.newdeck[i].game, ".json")
-			filename, err := filepath.Abs(fmt.Sprintf("%s%s", "./../data/"+Ds.newdeck[i].game, ".json"))
-			jsonFile, err := os.Open(filename)
-			// defer the closing of our jsonFile so that we can parse it later on
-			defer jsonFile.Close()
-			// if we os.Open returns an error then handle it
-			if err != nil {
-				assert.Fail("File game not found:" + filename)
-			} else {
-				log.Print("Successfully Opened: " + filename)
-				// read our opened xmlFile as a byte array.
-				byteValue, _ := ioutil.ReadAll(jsonFile)
 
-				// we unmarshal our byteArray which contains our
-				// jsonFile's content into 'users' which we defined above
-				json.Unmarshal(byteValue, &odeck)
-			}
-		*/
 		if Ds.newdeck[i].maxcards == c.Opendecks.Decks[i].Remaining {
 			if deck.Shuffled {
 				//Shuffle
@@ -94,11 +68,7 @@ func TestOpenDeck(t *testing.T) {
 				assert.Equal(odeck.Cards, c.Opendecks.Decks[i].Cards)
 			}
 		}
-		/*
-				} else {
-				assert.Fail(err.Error())
-			}
-		*/
+
 	}
 
 }

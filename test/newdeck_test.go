@@ -18,11 +18,6 @@ func TestNewDeck(t *testing.T) {
 
 	for _, d := range Ds.newdeck {
 
-		//if resp, err := http.Get(
-		//if resp, err := http.NewRequest(
-		//"http://127.0.0.1:8000/api/deck/" + d.game + "/new/" + d.shuffle + d.query); err == nil {
-		//	"/api/deck/"+d.game+"/new/"+d.shuffle+d.query, nil); err == nil {
-
 		req, err := http.NewRequest("GET", "/api/deck/"+d.game+"/new/"+d.shuffle+d.query, nil)
 		if err != nil {
 			t.Fatal(err)
@@ -31,7 +26,6 @@ func TestNewDeck(t *testing.T) {
 		// We create a ResponseRecorder (which satisfies http.ResponseWriter) to record the response.
 		res := httptest.NewRecorder()
 		handler := http.HandlerFunc(c.NewDeck)
-		//handler := http.HandlerFunc(NewDeck)
 
 		// Our handlers satisfy http.Handler, so we can call their ServeHTTP method
 		// directly and pass in our Request and ResponseRecorder.
@@ -44,19 +38,9 @@ func TestNewDeck(t *testing.T) {
 				status, http.StatusOK)
 		}
 
-		//res := httptest.NewRecorder()
-		//c.NewDeck(res, req)
-
-		/*
-			assert.Equal(http.StatusCreated, resp.StatusCode)
-			bodyBytes, _ := ioutil.ReadAll(resp.Body)
-		*/
-
-		//assert.Equal(http.StatusCreated, res.Code)
 		assert.Equal(http.StatusOK, res.Code)
-		//bodyBytes, _ := ioutil.ReadAll(handler.ServeHTTP().Body) //   req.Body)
+
 		bodyBytes := res.Body.Bytes()
-		//bodyString := string(bodyBytes)
 		bodyString := res.Body.String()
 		log.Info(bodyString)
 
@@ -73,11 +57,6 @@ func TestNewDeck(t *testing.T) {
 		newid.deck_id = deck.Deck_id
 		Dis.did = append(Dis.did, newid)
 
-		/*
-			} else {
-				assert.Fail(err.Error())
-			}
-		*/
 	}
 
 }

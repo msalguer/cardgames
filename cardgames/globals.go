@@ -33,8 +33,6 @@ type OpenDecks struct {
 //Global opendecks
 var Opendecks OpenDecks
 
-//Opendecks.Decks=Decks{} Try clear
-
 const MinSecretKeySize = 16
 
 //------- Load readme file ---------

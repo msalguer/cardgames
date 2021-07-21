@@ -8,11 +8,9 @@ import (
 )
 
 //************************** OPEN DECK *******************************************
-//func OpenDeck(c echo.Context) {
 func OpenDeck(res http.ResponseWriter, req *http.Request) { ///api/deck/:deck_id"
 	fmt.Println("Endpoint Hit: openDeck")
 	urlPart := strings.Split(req.URL.Path, "/")
-	//deck_id := c.Param("deck_id")
 	deck_id := urlPart[3]
 	print(deck_id)
 
@@ -31,7 +29,6 @@ func OpenDeck(res http.ResponseWriter, req *http.Request) { ///api/deck/:deck_id
 		opendeck.Txterror = "Deck not found"
 		retopendeck = opendeck
 	}
-	//return c.JSON(http.StatusOK, retopendeck)
-	//c.JSON(http.StatusOK, retopendeck)
+
 	json.NewEncoder(res).Encode(retopendeck)
 }

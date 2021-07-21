@@ -9,14 +9,9 @@ import (
 )
 
 //************************** DRAW DECK *******************************************
-//func DrawDeck(c echo.Context, res http.ResponseWriter, req *http.Request) { ///api/deck/:deck_id/draw"
 func DrawDeck(res http.ResponseWriter, req *http.Request) { ///api/deck/:deck_id/draw"
-	//	func DrawDeck(c echo, res http.ResponseWriter, req *http.Request) error {
-	//defer req.Body.Close()
+
 	fmt.Println("Endpoint Hit: drawDeck")
-	//deck_id := c.AcquireContext().Param("deck_id") // Param("deck_id")
-	//deck_id := c.Param("deck_id")
-	//count, err := strconv.Atoi(c.QueryParam("count"))
 	urlPart := strings.Split(req.URL.Path, "/")
 	deck_id := urlPart[3]
 	count, err := strconv.Atoi(req.URL.Query().Get("count"))
@@ -27,7 +22,6 @@ func DrawDeck(res http.ResponseWriter, req *http.Request) { ///api/deck/:deck_id
 	if err != nil || deck_id == "" {
 		retopendeck.Success = false
 		retopendeck.Txterror = "Deck not found, or the card counter parameter does not have a value greater than 0 (or does not exist)"
-		//return c.JSON(http.StatusOK, retopendeck)
 		json.NewEncoder(res).Encode(retopendeck)
 	}
 
@@ -46,14 +40,12 @@ func DrawDeck(res http.ResponseWriter, req *http.Request) { ///api/deck/:deck_id
 				retopendeck.Success = false
 				retopendeck.Txterror = "The card to draw counter is greater than the number of available cards"
 				retopendeck.Remaining = opendeck.Remaining
-				//return c.JSON(http.StatusOK, retopendeck)
 				json.NewEncoder(res).Encode(retopendeck)
 			} else {
 				retopendeck.Remaining = opendeck.Remaining - count
 				retopendeck.Success = true
 
 				for j := 0; j < count; j++ {
-					//for j := 0; j < count; j++ {
 					retopendeck.Cards = append(retopendeck.Cards, opendeck.Cards[j])
 				}
 
@@ -70,7 +62,6 @@ func DrawDeck(res http.ResponseWriter, req *http.Request) { ///api/deck/:deck_id
 
 		} else {
 			//Add rest opendecks
-
 			newopendecks.Decks = append(newopendecks.Decks, opendeck)
 		}
 
@@ -83,6 +74,5 @@ func DrawDeck(res http.ResponseWriter, req *http.Request) { ///api/deck/:deck_id
 		retopendeck.Success = false
 		retopendeck.Txterror = "Deck not found"
 	}
-	//return c.JSON(http.StatusOK, retopendeck)
 	json.NewEncoder(res).Encode(retopendeck)
 }

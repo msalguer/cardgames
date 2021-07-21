@@ -1,0 +1,75 @@
+package cardgames
+
+import (
+	"net/http"
+)
+
+//********************* SETUP AND RUN SERVER *******************
+//var Serv *echo.Echo
+//var E echo.Echo
+
+func SetupServer() {
+
+	/*
+		//e := echo.New()
+		E := echo.New()
+		//defer e.Close()
+
+		E.Use(middleware.Logger())
+		E.Use(middleware.Recover())
+
+		E.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+			AllowOrigins: []string{"*"},
+			AllowMethods: []string{echo.GET, echo.PUT, echo.POST, echo.DELETE},
+		}))
+	*/
+
+	//Routes(E)
+
+	//Routes
+
+	//E.GET("/api", HomePage)
+	http.HandleFunc("/api", HomePage)
+	//http.HandleFunc("/", NewDeck) //utils.go
+	//E.GET("/api/deck/:game/new/:shuffle", NewDeck(E.AcquireContext().Response().Writer, E.AcquireContext().Request().Response.Request)) //With cards parameter
+	//E.GET("/api/deck/:game/new/:shuffle", NewDeck)
+	//E.GET("/api/deck/:deck_id", OpenDeck)
+	http.HandleFunc("/api/deck/:deck_id", OpenDeck)
+	http.HandleFunc("/api/deck/:deck_id/draw", DrawDeck)
+	//E.GET("/api/deck/:deck_id/draw", DrawDeck) //With count parameter
+	//E.GET("/a", myHandler)
+	//.HandleFunc("/status", myHandler)
+
+	http.HandleFunc("/api/deck/{game}/new/{shuffle}", NewDeck) //(E.NewContext(E.AcquireContext()))
+	//E.Router().Add("/api/deck/:game/new/:shuffle", NewDeck(E.AcquireContext().Response().Writer, E.AcquireContext().Request().Response.Request))
+
+	http.ListenAndServe(":8000", nil)
+
+	/*
+		//Listen web server
+		port := os.Getenv("DB_HOST")
+		fmt.Printf("%s\n", port)
+		if port != "" {
+			E.Logger.Fatal(E.Start(port)) //For Heroku deploy
+		} else {
+			E.Logger.Fatal(E.Start(":8000"))
+		}
+	*/
+
+	//Serv = e
+
+}
+
+/*
+func myHandler(c echo.Context) //w http.ResponseWriter, r *http.Request) {
+
+	var op Opendeck
+		op.Success = false
+		op.Txterror = "Deck not found"
+		retopendeck = opendeck
+	}
+	return c.JSON(http.StatusOK, retopendeck)
+
+
+}
+*/

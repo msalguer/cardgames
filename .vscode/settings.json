@@ -1,0 +1,28 @@
+/*{
+    "sonarlint.connectedMode.project":{
+        "projectKey": "msalguer_cardgames"
+    }
+}
+*/
+
+
+{
+    "json.maxItemsComputed": 25000,
+    "sonarlint.ls.javaHome": "/home/msc/.vscode/extensions/sonarsource.sonarlint_managed-jre/jre/jdk-11.0.11+9-jre",
+    "redhat.telemetry.enabled": true,
+    "sonarlint.analyzerProperties": {
+
+    
+    },
+    "sonarlint.connectedMode.connections.sonarcloud": [
+    
+        {
+            "organizationKey": "msalguer",
+            "token": "08eadd1a0074b01a880a4817927f54f7fc4b16f1"
+          }
+    ],
+     "sonarlint.connectedMode.project": {
+        "projectKey": "msalguer_cardgames"
+      }
+}
+

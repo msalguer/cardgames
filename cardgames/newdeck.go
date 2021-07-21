@@ -10,10 +10,7 @@ import (
 )
 
 //************************** CREATE DECK *******************************************
-//func NewDeck(c echo.Context) error {
 func NewDeck(res http.ResponseWriter, req *http.Request) { //"/api/deck/"+d.game+"/new/"+d.shuffle+d.query
-	//func NewDeck(c echo.Context) error {
-	//func NewDeck(res http.ResponseWriter, req *http.Request) {
 
 	urlPart := strings.Split(req.URL.Path, "/")
 
@@ -21,39 +18,6 @@ func NewDeck(res http.ResponseWriter, req *http.Request) { //"/api/deck/"+d.game
 	game := urlPart[3]
 	shuffle := urlPart[5]
 	cards := req.URL.Query().Get("cards")
-
-	/*
-		game := c.Param("game") //  c.Param("game")
-		shuffle := c.Param("shuffle")
-		cards := c.QueryParam("cards")
-	*/
-
-	//game := GetParam(c, "game")
-	//shuffle := GetParam(c, "shuffle")
-	//cards := GetParam(res, req, "cards")
-	/*
-		game := GetParam(res, req, "game")
-		shuffle := GetParam(res, req, "shuffle")
-		cards := GetParam(res, req, "cards")
-	*/
-	/*
-		if cards == "" {
-			ShowError(res, req, "cards parameter not found")
-		}
-	*/
-	/*
-		fmt.Println("Game parameter not found")
-		var deck Deck
-		deck.Success = false
-		deck.Txterror = "Game parameter not found"
-		//return c.JSON(http.StatusOK, deck)
-		//req.Header().Set("Content-Type", "application/json")
-		//req.Write(json.Marshal(deck))
-
-		//res.Header.Set()  Set("Content-Type", "application/json")
-		//res.Header.Write(http.StatusCreated)
-		json.NewEncoder(res).Encode(deck)
-	*/
 
 	print(cards)
 
@@ -64,41 +28,9 @@ func NewDeck(res http.ResponseWriter, req *http.Request) { //"/api/deck/"+d.game
 		shuffled = false
 	}
 
-	//filename := path.Dir(fmt.Sprintf("%s%s", "../data/"+game, ".json"))
-	//testf := filepath.Abs(filename)
-	//filename := fmt.Sprintf("%s%s", "./../data/"+game, ".json")
-	//filename := fmt.Sprintf("%s%s%s", os.Getwd(), "./../data/"+game, ".json")
-	//filename := os.Getwd + "/data/" + game + ".json"
-	//filename, err := filepath.Abs(fmt.Sprintf("%s%s", "data/"+game, ".json"))
 	filename := fmt.Sprintf("%s%s", game, ".json")
-	//f := filepath.Join()
-	/*
-		//Actual file an directory
-		_, filename, _, ok := runtime.Caller(0)
-		if !ok {
-			panic("No caller information")
-		}
-		fmt.Printf("Filename : %q, Dir : %q\n", filename, path.Dir(filename))
-	*/
-	/*
-		jsonFile, err := os.Open(filename)
-		//jsonFile, err := ioutil.ReadFile(filename)
-		//byteValue, err := ioutil.ReadFile(filename)
-
-		// if we os.Open returns an error then handle it
-		if err != nil {
-			ShowError(res, "Game not found")
-			os.Exit(0)
-		}
-
-	*/
 	byteValue := ReadDataFile(res, filename)
 	fmt.Println("Successfully Opened pocker.json")
-	// defer the closing of our jsonFile so that we can parse it later on
-	//defer jsonFile.Close()
-
-	// read our opened xmlFile as a byte array.
-	//byteValue, _ := ioutil.ReadAll(jsonFile)
 
 	// we initialize our Users array
 	var deck Deck
@@ -147,8 +79,6 @@ func NewDeck(res http.ResponseWriter, req *http.Request) { //"/api/deck/"+d.game
 
 	Opendecks.Decks = append(Opendecks.Decks, opendeck)
 
-	//return c.JSON(http.StatusCreated, deck)
-	//json.NewEncoder(c.Echo().AcquireContext().Response().Writer).Encode(deck)
 	json.NewEncoder(res).Encode(deck)
 
 }

@@ -80,46 +80,4 @@ func init() {
 	TestOpenDeck(&testing.T{})
 	TestDrawDeck(&testing.T{})
 
-	//go c.SetupServer()                 //Start the HTTP server, concurrence mode
-	//time.Sleep(200 * time.Millisecond) //wait to start server
-
 }
-
-/*
-//********* GET URL SERVER *********
-func GetHost() string {
-	var o os
-	s := o.Args[1]
-	u, err := url.Parse(s)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Printf("%s\n", u.Host)
-	return u.Host
-}
-*/
-
-/*
-func Test_test(t *testing.T) {
-
-	for _, d := range ds.newdeck {
-
-		req, err := http.NewRequest("GET", "/api/deck/"+d.game+"/new/"+d.shuffle+d.query, nil)
-		if err != nil {
-			t.Fatal(err)
-		}
-
-		res := httptest.NewRecorder()
-		//c.DrawDeck(E, res, req)
-		c.NewDeck(res, req)
-
-		exp := "Hello World"
-		act := res.Body.String()
-		if exp != act {
-			t.Fatalf("Expected %s gog %s", exp, act)
-		}
-
-	}
-
-}
-*/
